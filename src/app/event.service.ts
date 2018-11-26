@@ -30,6 +30,12 @@ export class EventSesrvice {
         const data = {token: token};
         return this.http.post(this.userInfoUrl,data, this.options);
       }
+      addLesson(token,email, date, length){
+        let body = JSON.stringify({ token: token, email: email, date:date, length:length});
+        console.log(token + "" + email +" "+ date +" "+  length);
+        console.log(this.http.post(this.addLessonUrl,body, this.options));
+        return this.http.post(this.addLessonUrl,body, this.options);
+      }
       /*addLesson(){
         //console.log(body);
         let res = this.http.post(this.addLessonUrl,body, this.options

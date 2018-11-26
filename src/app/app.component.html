@@ -10,13 +10,13 @@
 <div *ngIf="isInstructor" class="container" >
         <p class="form-title">Utworz lekcje</p>
         <div class="form-group" style="text-align: center;">
-          <input type="text" id="email" placeholder="Email kursant">
+          <input type="text" id="email" [(ngModel)]='email'>
           <br>
-          <input type="text" id="data" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}T[0-9]{2}:[0-9]{2}" value="dataTgodzina" placeholder="Data">
+          <input type="text" id="data" [(ngModel)]='date'>
           <br>
-          <input type="number" id="min_lenght" placeholder="Długość minimalna minimalna lekcji">
+          <input type="number" id="min_lenght" [(ngModel)]='length'>
           <br>
-          <input type="button" id="lekcja_dodana" value="Dodaj lekcji" class="btn btn-success btn-sm">
+          <button id="lekcja_dodana" value="Dodaj lekcję" (click)="addLesson(email,date,length)" class="btn btn-success btn-sm">Dodaj lekcję</button>
          </div>
 </div>
 

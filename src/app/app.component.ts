@@ -75,6 +75,12 @@ export class AppComponent implements OnInit  {
   clickButton(model: any) {
     this.displayEvent = model;
   }
+
+  addLesson(email: any ,date: any,hours: any)
+  {
+    this.eventService.addLesson(localStorage.getItem('userToken'),email,date,hours);
+  };
+
   eventClick(model: any) {
     model = {
       event: {
