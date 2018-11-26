@@ -10,11 +10,16 @@ import { EventSesrvice } from './event.service';
 })
 export class AppComponent implements OnInit  {
   calendarOptions: Options;
- displayEvent: any;
+  displayEvent: any;
+  myLogin: any;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
   constructor(protected eventService: EventSesrvice) { }
 
   ngOnInit() {
+    this.eventService.login().subscribe(data => {
+      this.myLogin = data;
+      console.log(this.myLogin);
+    });
     this.eventService.getEvents().subscribe(data => {
       this.calendarOptions = {
         editable: false,

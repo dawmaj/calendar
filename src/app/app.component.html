@@ -7,5 +7,17 @@
     (eventClick)="eventClick($event.detail)"
     [(eventsModel)]="events"></ng-fullcalendar>
 </div>
+<div class="container">
+        <p class="form-title">Utworz lekcje</p>
+        <div class="form-group" style="text-align: center;">
+          <input type="text" id="email" placeholder="Email kursant">
+          <br>
+          <input type="text" id="data" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}T[0-9]{2}:[0-9]{2}" value="dataTgodzina" placeholder="Data">
+          <br>
+          <input type="number" id="min_lenght" placeholder="Długość minimalna minimalna lekcji">
+          <br>
+          <input type="button" id="lekcja_dodana" value="Dodaj lekcji" class="btn btn-success btn-sm">
+         </div>
+</div>
 
 <router-outlet></router-outlet>

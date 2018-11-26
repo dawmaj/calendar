@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { AppComponent } from './app.component';
 import { EventSesrvice } from './event.service';
+import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { EventSesrvice } from './event.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    HttpModule
   ],
   providers: [ EventSesrvice ],
   bootstrap: [AppComponent]
