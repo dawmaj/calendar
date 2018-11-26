@@ -7,7 +7,7 @@
     (eventClick)="eventClick($event.detail)"
     [(eventsModel)]="events"></ng-fullcalendar>
 </div>
-<div class="container">
+<div *ngIf="isInstructor" class="container" >
         <p class="form-title">Utworz lekcje</p>
         <div class="form-group" style="text-align: center;">
           <input type="text" id="email" placeholder="Email kursant">

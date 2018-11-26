@@ -11,6 +11,7 @@ export class EventSesrvice {
     private cid = 1;
     private baseUrl = "http://orlean.ski:8090";
     private loginUrl = this.baseUrl + "/api/login";
+    private userInfoUrl = this.baseUrl + '/api/user/info';
     private getLessonsUrl = this.baseUrl + '/api/school/get/lessons';
     private addLessonUrl = this.baseUrl + '/api/add/lesson';
     eventsArray: string[] = [];
@@ -18,26 +19,25 @@ export class EventSesrvice {
 
     constructor(private http: Http) { }
 
-    public login(): Observable<any> {
-        let body = JSON.stringify({ email: "test@test.pl", password:"test"});
+      login(){
+        let body = JSON.stringify({ email: "adam@test.pl", password:"adam"});
         console.log(body);
-        let res = this.http.post(this.loginUrl,body, this.options
-        ).pipe(map((response: Response) => response));
-        console.log(res);
-        return (res);
+        console.log(this.http.post(this.loginUrl,body, this.options));
+        return this.http.post(this.loginUrl,body, this.options);
       }
-
-      public addLesson(): Observable<any> {
-        let body = JSON.stringify({ email: "test@test.pl", password:"test"});
+      getUserDetails(token)
+      {
+        const data = {token: token};
+        return this.http.post(this.userInfoUrl,data, this.options);
+      }
+      /*addLesson(){
         //console.log(body);
         let res = this.http.post(this.addLessonUrl,body, this.options
         ).pipe(map((response: Response) => response));
         //console.log(res);
         return of(res);
       }
-      public getLesson(): Observable<any> {
-        let body = JSON.stringify({ email: "test@test.pl", password:"test"});
-    //console.log(this.msgArray);
+      getLesson(){
             this.eventsArray = this.message.split(", ");
             
             for (var i=0 ;i < this.eventsArray.length; i++) {
@@ -49,7 +49,7 @@ export class EventSesrvice {
         ).pipe(map((response: Response) => response));
         console.log(res);
         return of(res);
-      }
+      }*/
     public getEvents(): Observable<any> {
         const dateObj = new Date();
         const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);

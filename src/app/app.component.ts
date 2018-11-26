@@ -11,15 +11,18 @@ import { EventSesrvice } from './event.service';
 export class AppComponent implements OnInit  {
   calendarOptions: Options;
   displayEvent: any;
-  myLogin: any;
+  myLogin: string;
+  isInstructor: boolean;
+
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
   constructor(protected eventService: EventSesrvice) { }
 
   ngOnInit() {
     this.eventService.login().subscribe(data => {
-      this.myLogin = data;
-      console.log(this.myLogin);
+      localStorage.setItem('userToken', data.json().token);
+      console.log(data.json().token);
     });
+
     this.eventService.getEvents().subscribe(data => {
       this.calendarOptions = {
         editable: false,
@@ -46,8 +49,29 @@ export class AppComponent implements OnInit  {
         allDaySlot: false,
         events: data
       };
+      console.log(this.calendarOptions.editable);
+    });
+    this.eventService.getUserDetails(localStorage.getItem('userToken')).subscribe(data => {
+      console.log(data.json().accountType);
+      switch(data.json().accountType)
+      {
+        case 0:
+          break;
+        case 1:
+          this.isInstructor = true;
+          this.eventService.getEvents().subscribe(data => {
+          this.calendarOptions = {
+            editable: true,
+          };
+      console.log(this.calendarOptions.editable);
+    });
+        case 2:
+          break;
+      }
+      console.log(this.isInstructor + " " + this.calendarOptions.editable);
     });
   }
+  
   clickButton(model: any) {
     this.displayEvent = model;
   }
