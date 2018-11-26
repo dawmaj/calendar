@@ -23,54 +23,120 @@ export class AppComponent implements OnInit  {
       localStorage.setItem('userToken', data.json().token);
       console.log(data.json().token);
     });
-
-    this.eventService.getevents(localStorage.getItem('userToken')).subscribe(data => {
-      this.lessons = JSON.stringify(data.json());
-      console.log(this.lessons);
-      this.lessons = this.lessons.replace(/date/g,"start");
-      this.lessons = this.lessons.replace(/endDate/g,"end");
-      this.calendarOptions = {
-        editable: false,
-        eventLimit: false,
-        locale:	'pl',
-        buttonText: {
-          today: 'Dzisiaj',
-          month: 'Miesiąc',
-          week: 'Tydzień',
-          day: 'Dzień'
-        },
-        header: {
-          left: 'prev,next',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
-        },
-        views: {
-          agendaWeek: 
-          {
-            columnFormat: 'ddd d-M',
-          }
-        },
-        slotLabelFormat:"HH:mm",
-        allDaySlot: false,
-        events: JSON.parse(this.lessons)
-      };
-      console.log(this.calendarOptions.editable);
-    });
+    
+    
     this.eventService.getUserDetails(localStorage.getItem('userToken')).subscribe(data => {
       console.log(data.json().accountType);
       switch(data.json().accountType)
       {
         case 0:
+        this.eventService.getevents(localStorage.getItem('userToken')).subscribe(data => {
+          this.lessons = JSON.stringify(data.json());
+          this.lessons = this.lessons.replace(/date/g,"start");
+          this.lessons = this.lessons.replace(/endDate/g,"end");
+          this.calendarOptions = {
+            editable: false,
+            eventLimit: false,
+            locale:	'pl',
+            buttonText: {
+              today: 'Dzisiaj',
+              month: 'Miesiąc',
+              week: 'Tydzień',
+              day: 'Dzień',
+              list: 'Plan tygodnia',
+            },
+            header: {
+              left: 'prev,next',
+              center: 'title',
+              right: 'month,agendaWeek,agendaDay,listWeek'
+            },
+            views: {
+              agendaWeek: 
+              {
+                columnFormat: 'ddd d-M',
+              }
+            },
+            slotLabelFormat:"HH:mm",
+            allDaySlot: false,
+            noEventsMessage:"Brak wydarzeń do wyświetlenia",
+            events: JSON.parse(this.lessons)
+          };
+          console.log(this.calendarOptions.editable);
+          });
           break;
         case 1:
           this.isInstructor = true;
-          this.eventService.getevents(localStorage.getItem('userToken')).subscribe(data => {
+          this.eventService.getInsCalendar(localStorage.getItem('userToken')).subscribe(data => {
+            this.lessons = JSON.stringify(data.json());
+            this.lessons = this.lessons.replace(/date/g,"start");
+            this.lessons = this.lessons.replace(/endDate/g,"end");
+            this.calendarOptions = {
+              editable: false,
+              eventLimit: false,
+              locale:	'pl',
+              buttonText: {
+                today: 'Dzisiaj',
+                month: 'Miesiąc',
+                week: 'Tydzień',
+                day: 'Dzień',
+                list: 'Plan tygodnia',
+              },
+              header: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay,listWeek'
+              },
+              views: {
+                agendaWeek: 
+                {
+                  columnFormat: 'ddd d-M',
+                }
+              },
+              slotLabelFormat:"HH:mm",
+              allDaySlot: false,
+              noEventsMessage:"Brak wydarzeń do wyświetlenia",
+              events: JSON.parse(this.lessons)
+            };
+            console.log(this.calendarOptions.editable);
           this.calendarOptions = {
             editable: true,
           };
       console.log(this.calendarOptions.editable);
     });
         case 2:
+        this.eventService.getevents(localStorage.getItem('userToken')).subscribe(data => {
+          this.lessons = JSON.stringify(data.json());
+          this.lessons = this.lessons.replace(/date/g,"start");
+          this.lessons = this.lessons.replace(/endDate/g,"end");
+          this.calendarOptions = {
+            editable: false,
+            eventLimit: false,
+            locale:	'pl',
+            buttonText: {
+              today: 'Dzisiaj',
+              month: 'Miesiąc',
+              week: 'Tydzień',
+              day: 'Dzień',
+              list: 'Plan tygodnia',
+            },
+            header: {
+              left: 'prev,next',
+              center: 'title',
+              right: 'month,agendaWeek,agendaDay,listWeek'
+            },
+            views: {
+              agendaWeek: 
+              {
+                columnFormat: 'ddd d-M',
+              }
+            },
+            slotLabelFormat:"HH:mm",
+            allDaySlot: false,
+            noEventsMessage:"Brak wydarzeń do wyświetlenia",
+            events: JSON.parse(this.lessons)
+          };
+          console.log(this.calendarOptions.editable);
+        });
           break;
       }
       console.log(this.isInstructor + " " + this.calendarOptions.editable);
