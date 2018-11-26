@@ -12,6 +12,7 @@ export class AppComponent implements OnInit  {
   calendarOptions: Options;
   displayEvent: any;
   myLogin: string;
+  lessons: any;
   isInstructor: boolean;
 
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
@@ -23,7 +24,11 @@ export class AppComponent implements OnInit  {
       console.log(data.json().token);
     });
 
-    this.eventService.getEvents().subscribe(data => {
+    this.eventService.getevents(localStorage.getItem('userToken')).subscribe(data => {
+      this.lessons = JSON.stringify(data.json());
+      console.log(this.lessons);
+      this.lessons = this.lessons.replace(/date/g,"start");
+      this.lessons = this.lessons.replace(/endDate/g,"end");
       this.calendarOptions = {
         editable: false,
         eventLimit: false,
@@ -47,7 +52,7 @@ export class AppComponent implements OnInit  {
         },
         slotLabelFormat:"HH:mm",
         allDaySlot: false,
-        events: data
+        events: JSON.parse(this.lessons)
       };
       console.log(this.calendarOptions.editable);
     });
@@ -59,7 +64,7 @@ export class AppComponent implements OnInit  {
           break;
         case 1:
           this.isInstructor = true;
-          this.eventService.getEvents().subscribe(data => {
+          this.eventService.getevents(localStorage.getItem('userToken')).subscribe(data => {
           this.calendarOptions = {
             editable: true,
           };

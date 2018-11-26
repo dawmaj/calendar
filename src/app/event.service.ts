@@ -20,7 +20,7 @@ export class EventSesrvice {
     constructor(private http: Http) { }
 
       login(){
-        let body = JSON.stringify({ email: "adam@test.pl", password:"adam"});
+        let body = JSON.stringify({ email: "test@test.pl", password:"test"});
         console.log(body);
         console.log(this.http.post(this.loginUrl,body, this.options));
         return this.http.post(this.loginUrl,body, this.options);
@@ -34,7 +34,7 @@ export class EventSesrvice {
         let body = JSON.stringify({ token: token, email: email, date:date, length:length});
         console.log(token + "" + email +" "+ date +" "+  length);
         console.log(this.http.post(this.addLessonUrl,body, this.options));
-        return this.http.post(this.addLessonUrl,body, this.options);
+        return of(this.http.post(this.addLessonUrl,body, this.options));
       }
       /*addLesson(){
         //console.log(body);
@@ -56,6 +56,10 @@ export class EventSesrvice {
         console.log(res);
         return of(res);
       }*/
+      getevents(token){
+        let body = JSON.stringify({ token: token});
+        return this.http.post(this.getLessonsUrl,body, this.options);
+      }
     public getEvents(): Observable<any> {
         const dateObj = new Date();
         const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
