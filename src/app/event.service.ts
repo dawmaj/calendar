@@ -12,8 +12,9 @@ export class EventSesrvice {
     private baseUrl = "http://orlean.ski:8090";
     private loginUrl = this.baseUrl + "/api/login";
     private userInfoUrl = this.baseUrl + '/api/user/info';
-    private getLessonsUrl = this.baseUrl + '/api/school/get/lessons';
+    private getLessonsUrl = this.baseUrl + '/api/get/lessons';
     private getInsUrl = this.baseUrl + '/api/instructor/get/lessons';
+    private getSchUrl = this.baseUrl + '/api/school/get/lessons';
     private addLessonUrl = this.baseUrl + '/api/add/lesson';
     eventsArray: string[] = [];
     message: string;
@@ -21,7 +22,7 @@ export class EventSesrvice {
     constructor(private http: Http) { }
 
       login(){
-        let body = JSON.stringify({ email: "arek@test.pl", password:"arek"});
+        let body = JSON.stringify({ email: "test@test.pl", password:"test"});
         console.log(body);
         console.log(this.http.post(this.loginUrl,body, this.options));
         return this.http.post(this.loginUrl,body, this.options);
@@ -64,6 +65,10 @@ export class EventSesrvice {
       getInsCalendar(token){
         let body = JSON.stringify({ token: token});
         return this.http.post(this.getInsUrl,body, this.options);
+      }
+      getSchCalendar(token){
+        let body = JSON.stringify({ token: token});
+        return this.http.post(this.getSchUrl,body, this.options);
       }
     public getEvents(): Observable<any> {
         const dateObj = new Date();

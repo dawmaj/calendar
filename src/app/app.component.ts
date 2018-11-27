@@ -30,7 +30,7 @@ export class AppComponent implements OnInit  {
       switch(data.json().accountType)
       {
         case 0:
-        this.eventService.getevents(localStorage.getItem('userToken')).subscribe(data => {
+        this.eventService.getSchCalendar(localStorage.getItem('userToken')).subscribe(data => {
           this.lessons = JSON.stringify(data.json());
           this.lessons = this.lessons.replace(/date/g,"start");
           this.lessons = this.lessons.replace(/endDate/g,"end");
