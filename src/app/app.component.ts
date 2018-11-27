@@ -24,7 +24,7 @@ export class AppComponent implements OnInit  {
       console.log(data.json().token);
     });
     
-    
+
     this.eventService.getUserDetails(localStorage.getItem('userToken')).subscribe(data => {
       console.log(data.json().accountType);
       switch(data.json().accountType)
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit  {
             noEventsMessage:"Brak wydarzeń do wyświetlenia",
             events: JSON.parse(this.lessons)
           };
-          console.log(this.calendarOptions.editable);
+          console.log(this.lessons);
           });
           break;
         case 1:
@@ -97,12 +97,9 @@ export class AppComponent implements OnInit  {
               noEventsMessage:"Brak wydarzeń do wyświetlenia",
               events: JSON.parse(this.lessons)
             };
-            console.log(this.calendarOptions.editable);
-          this.calendarOptions = {
-            editable: true,
-          };
-      console.log(this.calendarOptions.editable);
-    });
+            console.log(this.lessons);
+            });
+            break;
         case 2:
         this.eventService.getevents(localStorage.getItem('userToken')).subscribe(data => {
           this.lessons = JSON.stringify(data.json());
@@ -135,13 +132,12 @@ export class AppComponent implements OnInit  {
             noEventsMessage:"Brak wydarzeń do wyświetlenia",
             events: JSON.parse(this.lessons)
           };
-          console.log(this.calendarOptions.editable);
-        });
+          console.log(this.lessons);
+          });
           break;
-      }
-      console.log(this.isInstructor + " " + this.calendarOptions.editable);
-    });
-  }
+    }
+  });
+}
   
   clickButton(model: any) {
     this.displayEvent = model;
@@ -149,7 +145,10 @@ export class AppComponent implements OnInit  {
 
   addLesson(email: any ,date: any,hours: any)
   {
-    this.eventService.addLesson(localStorage.getItem('userToken'),email,date,hours);
+    this.eventService.addLesson(localStorage.getItem('userToken'),email,date,hours).subscribe(data => {
+      console.log("LESSON ADDED");
+      console.log(data.status);
+    });
   };
 
   eventClick(model: any) {

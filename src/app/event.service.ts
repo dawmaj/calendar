@@ -22,7 +22,7 @@ export class EventSesrvice {
     constructor(private http: Http) { }
 
       login(){
-        let body = JSON.stringify({ email: "test@test.pl", password:"test"});
+        let body = JSON.stringify({ email: "adam@test.pl", password:"adam"});
         console.log(body);
         console.log(this.http.post(this.loginUrl,body, this.options));
         return this.http.post(this.loginUrl,body, this.options);
@@ -33,10 +33,11 @@ export class EventSesrvice {
         return this.http.post(this.userInfoUrl,data, this.options);
       }
       addLesson(token,email, date, length){
+        let cid = 1;
         let body = JSON.stringify({ token: token, email: email, date:date, length:length});
         console.log(token + "" + email +" "+ date +" "+  length);
         console.log(this.http.post(this.addLessonUrl,body, this.options));
-        return of(this.http.post(this.addLessonUrl,body, this.options));
+        return this.http.post(this.addLessonUrl,body, this.options);
       }
       /*addLesson(){
         //console.log(body);
