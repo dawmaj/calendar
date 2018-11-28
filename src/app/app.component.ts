@@ -57,6 +57,7 @@ export class AppComponent implements OnInit  {
               }
             },
             slotLabelFormat:"HH:mm",
+            timeFormat: 'H(:mm)',
             allDaySlot: false,
             noEventsMessage:"Brak wydarzeń do wyświetlenia",
             events: JSON.parse(this.lessons)
@@ -93,6 +94,7 @@ export class AppComponent implements OnInit  {
                 }
               },
               slotLabelFormat:"HH:mm",
+              timeFormat: 'H(:mm)',
               allDaySlot: false,
               noEventsMessage:"Brak wydarzeń do wyświetlenia",
               events: JSON.parse(this.lessons)
@@ -128,6 +130,7 @@ export class AppComponent implements OnInit  {
               }
             },
             slotLabelFormat:"HH:mm",
+            timeFormat: 'H(:mm)',
             allDaySlot: false,
             noEventsMessage:"Brak wydarzeń do wyświetlenia",
             events: JSON.parse(this.lessons)
