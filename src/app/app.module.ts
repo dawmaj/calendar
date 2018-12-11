@@ -7,11 +7,13 @@ import { FullCalendarModule } from 'ng-fullcalendar';
 import { AppComponent } from './app.component';
 import { EventSesrvice } from './event.service';
 import { HttpModule } from '@angular/http';
+import { CalComponent } from './cal/cal.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CalComponent
   ],
   imports: [
     BrowserModule,

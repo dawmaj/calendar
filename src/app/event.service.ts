@@ -22,7 +22,7 @@ export class EventSesrvice {
     constructor(private http: Http) { }
 
       login(){
-        let body = JSON.stringify({ email: "adam@test.pl", password:"adam"});
+        let body = JSON.stringify({ email: "kursant@kursant.pl", password:"kursant"});
         console.log(body);
         console.log(this.http.post(this.loginUrl,body, this.options));
         return this.http.post(this.loginUrl,body, this.options);
