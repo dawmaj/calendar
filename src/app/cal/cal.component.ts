@@ -53,7 +53,7 @@ export class CalComponent implements OnInit {
             views: {
               agendaWeek: 
               {
-                columnFormat: 'ddd d-M',
+                columnFormat: 'ddd D. M',
               }
             },
             slotLabelFormat:"HH:mm",
@@ -90,7 +90,7 @@ export class CalComponent implements OnInit {
               views: {
                 agendaWeek: 
                 {
-                  columnFormat: 'ddd d-M',
+                  columnFormat: 'ddd D. M',
                 }
               },
               slotLabelFormat:"HH:mm",
@@ -126,7 +126,7 @@ export class CalComponent implements OnInit {
             views: {
               agendaWeek: 
               {
-                columnFormat: 'ddd d-M',
+                columnFormat: 'ddd D. M',
               }
             },
             slotLabelFormat:"HH:mm",
