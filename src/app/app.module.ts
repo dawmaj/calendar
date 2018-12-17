@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { EventSesrvice } from './event.service';
 import { HttpModule } from '@angular/http';
 import { CalComponent } from './cal/cal.component';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalComponent
+    CalComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
