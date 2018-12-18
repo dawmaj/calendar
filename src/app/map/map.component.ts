@@ -11,8 +11,8 @@ export class MapComponent implements OnInit {
 
   constructor() { }
 
-  latitude: number = 18.5204;
-  longitude: number = 73.8567;
+  latitude: number = 52.4082663;
+  longitude: number = 16.9335199;
 
   map: any;
 
@@ -25,7 +25,7 @@ export class MapComponent implements OnInit {
         })
       ],
       view: new ol.View({
-        center: ol.proj.fromLonLat([73.8567, 18.5204]),
+        center: ol.proj.fromLonLat([16.9335199, 52.4082663]),
         zoom: 8
       })
 });
