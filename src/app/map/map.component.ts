@@ -80,7 +80,7 @@ export class MapComponent implements OnInit {
           })
         })
       }
-
+      iconFeature.setStyle(iconStyle);
       this.vectorSource.addFeature(iconFeature);
     }
     
@@ -109,8 +109,7 @@ export class MapComponent implements OnInit {
 
 
   this.vectorLayer = new OlVectorLayer({
-      source: this.vectorSource,
-      style: iconStyle
+      source: this.vectorSource
   });
 
   /* XYZ */
