@@ -12,6 +12,7 @@ import LineString from 'ol/geom/LineString';
 import Style from 'ol/style/Style';
 import Stroke from 'ol/style/Stroke';
 import Fill from 'ol/style/Fill';
+import Icon from 'ol/style/Icon';
 import { fromLonLat } from 'ol/proj';
 import { markParentViewsForCheck } from '@angular/core/src/view/util';
 
@@ -29,6 +30,7 @@ export class MapComponent implements OnInit {
 
   map: OlMap;
     vectorSource: OlVectorSource;
+    vectorLine: OlVectorSource;
     vectorLayer: OlVectorLayer;
     xyzSource: OlXyzSource;
     tileLayer: OlTileLayer;
@@ -38,11 +40,11 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.vectorSource = new OlVectorSource({});
-    var vectorLine = new OlVectorSource({});
+    this.vectorLine = new OlVectorSource({});
     var places = [
-      [16.9335199, 52.4082663],
-      [15.9335000, 52.4082000],
-      [14.9300000, 52.4080000],
+      [16.9335199, 52.4082663, "r"],
+      [15.9335000, 52.4082000, "y"],
+      [14.9300000, 52.4080000, "b"],
     ];
     
     var points = [ 
@@ -53,12 +55,35 @@ export class MapComponent implements OnInit {
 
     
     for (var i = 0; i < places.length; i++) {
-      console.log(places[i][0], places[i][1]);
+      console.log(places[i][0], places[i][1],places[i][2]);
+    
       var iconFeature = new OlFeature({
         geometry: new OlPoint(fromLonLat([places[i][0], places[i][1]])),
       });
+      if (places[i][2] == "r")
+      {
+        var iconStyle= new Style({
+          image: new Icon({
+            color: '#4271AE',
+            crossOrigin: 'anonymous',
+            src: '../assets/images/marker.png'
+          })
+        })
+      }
+      else
+      {
+        var iconStyle = new Style({
+          image: new Icon({
+            color: '#4271AE',
+            crossOrigin: 'anonymous',
+            src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Map_marker_font_awesome.svg/100px-Map_marker_font_awesome.svg.png'
+          })
+        })
+      }
+
       this.vectorSource.addFeature(iconFeature);
     }
+    
       for (var i = 0; i < points.length; i++) {
             points[i] = fromLonLat(points[i]);
             console.log(points[i]);
@@ -67,14 +92,14 @@ export class MapComponent implements OnInit {
       var featureLine = new OlFeature({
         geometry: new LineString(points)
       });
-      vectorLine.addFeature(featureLine);
+      this.vectorLine.addFeature(featureLine);
      
 
       var vectorLineLayer = new OlVectorLayer({
-          source: vectorLine,
+          source: this.vectorLine,
           style: new Style({
-              fill: new Fill({ color: '#00FF00', weight: 4 }),
-              stroke: new Stroke({ color: '#00FF00', width: 2 })
+              fill: new Fill({ color: '#000000', weight: 2 }),
+              stroke: new Stroke({ color: '#000000', width: 2 })
           })
       });
     this.view = new OlView({
@@ -84,7 +109,8 @@ export class MapComponent implements OnInit {
 
 
   this.vectorLayer = new OlVectorLayer({
-      source: this.vectorSource
+      source: this.vectorSource,
+      style: iconStyle
   });
 
   /* XYZ */
