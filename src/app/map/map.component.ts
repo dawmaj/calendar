@@ -70,13 +70,23 @@ export class MapComponent implements OnInit {
           })
         })
       }
+      else if (places[i][2] == "b")
+      {
+        var iconStyle = new Style({
+          image: new Icon({
+            color: '#4271AE',
+            crossOrigin: 'anonymous',
+            src: '../assets/images/marker2.png'
+          })
+        })
+      }
       else
       {
         var iconStyle = new Style({
           image: new Icon({
             color: '#4271AE',
             crossOrigin: 'anonymous',
-            src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Map_marker_font_awesome.svg/100px-Map_marker_font_awesome.svg.png'
+            src: '../assets/images/marker3.png'
           })
         })
       }
@@ -127,7 +137,7 @@ export class MapComponent implements OnInit {
   this.map = new OlMap({
       target: 'map',
       // Added both layers
-      layers: [this.tileLayer, this.vectorLayer, vectorLineLayer],
+      layers: [this.tileLayer, vectorLineLayer, this.vectorLayer],
       view: this.view
   });
   }
