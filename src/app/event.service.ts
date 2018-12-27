@@ -16,6 +16,7 @@ export class EventSesrvice {
     private getInsUrl = this.baseUrl + '/api/instructor/get/lessons';
     private getSchUrl = this.baseUrl + '/api/school/get/lessons';
     private addLessonUrl = this.baseUrl + '/api/add/lesson';
+    private showMap = this.baseUrl + '/api/show/map';
     eventsArray: string[] = [];
     message: string;
 
